@@ -1,6 +1,6 @@
 # Gestión de Usuarios
 
-Aplicación web de una sola página para hacer y practicar un CRUD de usuarios con React, Vite y React Router.
+Aplicación web de una sola página para hacer y practicar con un CRUD de usuarios con React, Vite y React Router.
 
 ## Funcionalidades
 
