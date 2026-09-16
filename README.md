@@ -27,9 +27,9 @@ git clone https://github.com/julianaprietoa/crud-react.git
 cd crud-react
 ```
 
-Después, instala las dependencias y sigue las instrucciones de puesta en marcha.
+Después, instala las dependencias y sigue las instrucciones para correr el proyecto.
 
-## Puesta en marcha
+## Correr la app en tu computador
 
 Se necesita Node.js y npm instalados.
 
