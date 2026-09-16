@@ -1,40 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 
 function UserEdit({ users, onUpdateUser }) {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const userToEdit = users.find((user) => user.id === Number(id));
 
-  const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [error, setError] = useState("");
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    const userToEdit = users.find((u) => u.id === Number(id));
-    console.log(users);
-    console.log("Usuario que voy a editar", userToEdit);
-    if (userToEdit) {
-      setNombre(userToEdit.nombre);
-      setCorreo(userToEdit.correo);
-      setNotFound(false);
-    } else {
-      setNotFound(true);
-    }
-  }, [id, users]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!nombre.trim() || !correo.trim()) {
-      setError("Por favor, completa todos los campos.");
-      return;
-    }
-
-    onUpdateUser(Number(id), { nombre: nombre.trim(), correo: correo.trim() });
-    navigate("/");
-  };
-
-  if (notFound) {
+  if (!userToEdit) {
     return (
       <div className="card-container form-card text-center">
         <div className="empty-icon">⚠️</div>
@@ -50,10 +21,35 @@ function UserEdit({ users, onUpdateUser }) {
   }
 
   return (
+    <UserEditForm
+      key={userToEdit.id}
+      user={userToEdit}
+      onUpdateUser={onUpdateUser}
+    />
+  );
+}
+
+function UserEditForm({ user, onUpdateUser }) {
+  const navigate = useNavigate();
+  const [nombre, setNombre] = useState(user.nombre);
+  const [correo, setCorreo] = useState(user.correo);
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!nombre.trim() || !correo.trim()) {
+      setError("Por favor, completa todos los campos.");
+      return;
+    }
+
+    onUpdateUser(user.id, { nombre: nombre.trim(), correo: correo.trim() });
+    navigate("/");
+  };
+
+  return (
     <div className="card-container form-card">
       <div className="card-header">
         <h2>Editar Usuario</h2>
-        <p className="subtitle">Modifica los datos del usuario #{id}.</p>
       </div>
 
       {error && <div className="alert-error">{error}</div>}
