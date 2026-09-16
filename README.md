@@ -18,6 +18,17 @@ Aplicación web de una sola página para practicar un CRUD de usuarios con React
 - React Router
 - ESLint
 
+## Descargar el repositorio
+
+Para obtener una copia local del proyecto, necesitas tener Git instalado y ejecutar:
+
+```bash
+git clone https://github.com/julianaprietoa/crud-react.git
+cd crud-react
+```
+
+Después, instala las dependencias y sigue las instrucciones de puesta en marcha.
+
 ## Puesta en marcha
 
 Se necesita Node.js y npm instalados.
